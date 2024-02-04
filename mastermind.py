@@ -9,7 +9,7 @@ from PIL import Image, ImageTk
 # Global parameters
 __SIZE__ = 40
 __RESOURCES_PATH__ = "./resources"
-__NUMBER_OF_ATTEMPS__ = 10
+__NUMBER_OF_ATTEMPTS__ = 10
 # __CODE_PEG_LINE_SIZE__ ne fonctionne que pour la valeur 4
 # cf. classe ResultCanvas qui ne sait gérer que 4 pegs
 __CODE_PEG_LINE_SIZE__ = 4
@@ -35,7 +35,7 @@ class PegColor(Enum):
 
 class PegColorFactory():
     _size = __SIZE__
-    _resouces_path = __RESOURCES_PATH__
+    _resources_path = __RESOURCES_PATH__
     _peg_color_file_names = {
         PegColor.blue: "blue.png",
         PegColor.green: "green.png",
@@ -47,7 +47,7 @@ class PegColorFactory():
 
     def _create_image(self, color: PegColor):
         tmp_im = Image.open(
-            f'{self._resouces_path}/{self._peg_color_file_names[color]}')
+            f'{self._resources_path}/{self._peg_color_file_names[color]}')
         tmp_im = tmp_im.resize((self._size, self._size),
                                Image.Resampling.LANCZOS)
         return ImageTk.PhotoImage(tmp_im)
@@ -112,7 +112,7 @@ class CodePeg(Button):
 
 class ValidationButton(Button):
     _size = __SIZE__
-    _resouces_path = __RESOURCES_PATH__
+    _resources_path = __RESOURCES_PATH__
     _image_file = "validation_button_2.png"
 
     def __init__(self, root, state: bool = False):
@@ -124,7 +124,7 @@ class ValidationButton(Button):
 
     def _init_enabled_image(self):
         image = Image.open(
-            f'{self._resouces_path}/{self._image_file}')
+            f'{self._resources_path}/{self._image_file}')
         image = image.resize(size=(self._size, self._size),
                              resample=Image.Resampling.LANCZOS)
         self._enabled_image = ImageTk.PhotoImage(image)
@@ -196,7 +196,7 @@ class ResultCanvas(Canvas):
 
 class CodePegLine(Frame):
     _size = __SIZE__
-    _resouces_path = __RESOURCES_PATH__
+    _resources_path = __RESOURCES_PATH__
 
     def __init__(self, nb, root, code):
         self._root = root
@@ -205,7 +205,7 @@ class CodePegLine(Frame):
         self._pack_number(nb)
         self._pack_code_pegs()
         self._pack_result_canvas()
-        self._pack_validation_buton()
+        self._pack_validation_button()
 
     def _pack_number(self, nb: int = 0):
         self._number = Label(self, text=str(
@@ -219,7 +219,7 @@ class CodePegLine(Frame):
         for code_peg in self._code_pegs:
             code_peg.pack(side='left')
 
-    def _pack_validation_buton(self):
+    def _pack_validation_button(self):
         self._val_but = ValidationButton(self)
         self._val_but.pack(side='left')
 
@@ -296,7 +296,7 @@ class CodePegLine(Frame):
 
 
 class MastermindBoard(Frame):
-    _nb_of_attempts = __NUMBER_OF_ATTEMPS__
+    _nb_of_attempts = __NUMBER_OF_ATTEMPTS__
 
     def __init__(self, root):
         self._root = root
