@@ -69,6 +69,9 @@ The result is coded by black and white circles:
 
 The order of the results is not linked to the order of the holes.
 
+> [!TIP]
+> 4 black circles and you're in!
+
 
 ## Class diagram
 
