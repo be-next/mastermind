@@ -65,14 +65,14 @@ The colors are arranged in the following order: blue, green, orange, pink, viole
 Once all the holes are colored, click on the right-hand button to check the solution.
 
 The result is coded by black and white circles:
-  - A black circle means that a color is the correct one, but has not been placed at the right place,
-  - A white circle means that one of the colors is correct and in the right place,
+  - A white circle means that a color is the correct one, but has not been placed at the right place,
+  - A black circle means that one of the colors is correct and in the right place,
   - no circle means that one of the colors is not part of the solution.
 
 The order of the results is not linked to the order of the holes.
 
 > [!TIP]
-> 4 white circles and you're in!
+> 4 black circles and you're in!
 
 
 ## Class diagram
