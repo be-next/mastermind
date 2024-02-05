@@ -4,7 +4,7 @@
 ![GitHub License](https://img.shields.io/github/license/be-next/MonoAxis?logo=apache)
 ![GitHub top language](https://img.shields.io/github/languages/top/be-next/mastermind?logo=python)
 
-Minimalist Mastermind written in Python with the TK library for the graphical interface.
+Minimalist Mastermind written in Python with TK GUI.
 
 ## Table of Contents
 
@@ -31,6 +31,8 @@ There are many variants, mainly designed to make the game more complex.
 > [!WARNING]
 > This code works with Python 3.11 but not with Python 3.9.
 > I haven't tested any other versions of Python...
+
+Nothing fancy here :wink:
 
 Clone this repository:
 ```bash
@@ -70,7 +72,7 @@ The result is coded by black and white circles:
 The order of the results is not linked to the order of the holes.
 
 > [!TIP]
-> 4 black circles and you're in!
+> 4 white circles and you're in!
 
 
 ## Class diagram
