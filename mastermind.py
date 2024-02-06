@@ -10,8 +10,8 @@ from PIL import Image, ImageTk
 __SIZE__ = 40
 __RESOURCES_PATH__ = "./resources"
 __NUMBER_OF_ATTEMPTS__ = 10
-# __CODE_PEG_LINE_SIZE__ ne fonctionne que pour la valeur 4
-# cf. classe ResultCanvas qui ne sait gérer que 4 pegs
+# __CODE_PEG_LINE_SIZE__ works only set to 4
+# due to ResultCanvas class that only manage 4 pegs
 __CODE_PEG_LINE_SIZE__ = 4
 
 
@@ -147,13 +147,13 @@ class ResultCanvas(Canvas):
         self._root = root
         super().__init__(self._root, width=__SIZE__,
                          height=__SIZE__, bd=0, highlightthickness=0, bg='snow')
-        self._init_coordonates()
+        self._init_coordinates()
 
-    def _init_coordonates(self):
+    def _init_coordinates(self):
         radius = (__SIZE__ / 4) - 2
         step = __SIZE__ / 4
 
-        self._coordonates = {
+        self._coordinates = {
             0: [(step - radius), (step - radius), (step + radius), (step + radius)],
             1: [((step*3) - radius), (step - radius), ((step*3) + radius), (step + radius)],
             2: [(step - radius), ((step*3) - radius), (step + radius), ((step*3) + radius)],
@@ -163,17 +163,17 @@ class ResultCanvas(Canvas):
     def _draw_kpeg(self, peg_id, peg_status):
         if peg_status == 1:  # misplaced
             self.create_oval(
-                self._coordonates[peg_id][0],
-                self._coordonates[peg_id][1],
-                self._coordonates[peg_id][2],
-                self._coordonates[peg_id][3],
+                self._coordinates[peg_id][0],
+                self._coordinates[peg_id][1],
+                self._coordinates[peg_id][2],
+                self._coordinates[peg_id][3],
                 outline='black', width=2)
         elif peg_status == 2:
             self.create_oval(
-                self._coordonates[peg_id][0],
-                self._coordonates[peg_id][1],
-                self._coordonates[peg_id][2],
-                self._coordonates[peg_id][3],
+                self._coordinates[peg_id][0],
+                self._coordinates[peg_id][1],
+                self._coordinates[peg_id][2],
+                self._coordinates[peg_id][3],
                 fill='black', width=2)
 
     def draw_result(self, well_placed_nb: int = 0, misplaced_nb: int = 0):
@@ -209,7 +209,7 @@ class CodePegLine(Frame):
 
     def _pack_number(self, nb: int = 0):
         self._number = Label(self, text=str(
-            nb), justify='center', width=2)  # largeur en nb de caractères
+            nb), justify='center', width=2)  # width in nb of characters
         self._number.pack(side='left')
 
     def _pack_code_pegs(self):
@@ -232,10 +232,10 @@ class CodePegLine(Frame):
         current_code = [code_peg.color for code_peg in self._code_pegs]
         print(current_code)
 
-        # Vérifie que toutes les couleurs ont bien été saisies
+        # Checks all colors are selected (no peg remains empty)
         if PegColor.no_color in current_code:
             messagebox.showwarning(
-                "Attention", "Vous devez choisir une couleur pour chaque emplacement !")
+                "Warning", "You have to choose a color for each location!")
             return
 
         well_placed = 0
@@ -262,10 +262,10 @@ class CodePegLine(Frame):
         print(f'well_placed : {well_placed}, misplaced : {misplaced}')
 
         if well_placed == __CODE_PEG_LINE_SIZE__:
-            # appelle la fonction MastermindBoard.win() pour indiquer la victoire !
+            # calls the MastermindBoard.win() function to indicate victory!
             self._win_func_hook()
         else:
-            # appelle la fonction MastermindBoard.next() pour changer la ligne active
+            # calls MastermindBoard.next() function to activate next line
             self._next_func_hook()
 
     def disable(self):
@@ -317,13 +317,13 @@ class MastermindBoard(Frame):
         self._lines[self._current_line_index].enable()
 
     def win(self):
-        if messagebox.askyesno("Gagné !", "Bravo ! Vous avez gagné !\n Voulez-vous rejouer une nouvelle partie ?"):
+        if messagebox.askyesno("Well done!", "Congratulations! You've won!\n Would you like to play another game?"):
             self.renew()
         else:
             self._quit_func()
 
     def next(self):
-        # fonction appelée par chaque bouton de validation
+        # function called by each validation button
         self._lines[self._current_line_index].disable()
         self._current_line_index += 1
 
@@ -331,10 +331,10 @@ class MastermindBoard(Frame):
             self._lines[self._current_line_index].enable()
         else:
             if messagebox.askyesno(
-                    "Perdu !", "Vous avez perdu...\nVoulez-vous rejouer une nouvelle partie ?"):
+                    "Lost!", "You've lost...\nWould you like to play again?"):
                 self.renew()
             else:
-                # appel la fonction Mastermind.quit()
+                # calls Mastermind.quit() function
                 self._quit_func()
 
     def renew(self):
