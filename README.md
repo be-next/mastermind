@@ -23,8 +23,7 @@ Here's what this minimalist graphical interface looks like:
 Mastermind was invented in 1970 by Mordecai Meirowitz, in Israeli.
 The rules can be found here: [wikipedia](https://en.wikipedia.org/wiki/Mastermind_(board_game)).
 
-This implementation follows original rules, i.e. 6 colors and 4 holes.
-There are many variants, mainly designed to make the game more complex.
+There are many variants, mainly designed to make the game more complex. This implementation follows original rules, i.e. 6 colors and 4 holes.
 
 ## Installation
 
